@@ -20,6 +20,12 @@ function rndHexColor() {
 }
 
 function startGame() {
+	document.body.style.background = "white";
+	document.getElementById("message").innerHTML = "";
+	document.getElementById("container-hexColor").style.display = "block";
+	document.getElementById("container-diff").style.display = "block";
+	document.getElementById("restart").style.display = "none";
+
 	Options = [];
 	for (var i = 0; i < numOptions ; i++) {
 		Options.push(rndHexColor());
@@ -37,8 +43,7 @@ function startGame() {
 	}
 }
 
-function reset() {
-	document.getElementById("container-hexColor").style.display = "block";
+function reset() {	
 	startGame();
 }
 
@@ -46,11 +51,14 @@ function guess(num) {
 	console.log(num)
 	let guessHexColor = Options[num];
 	if(wantedHexColor == guessHexColor){
-		console.log("Výhra!");
 		document.getElementById("container-hexColor").style.display = "none";
+		document.getElementById("container-diff").style.display = "none";
 		document.getElementById("restart").style.display = "inline-block";
+		document.getElementById("message").innerHTML = "CORRECT!";
+		document.body.style.background = wantedHexColor;
 	} else {
 		document.getElementById('item-'+num).style.display = "none";
+		document.getElementById("message").innerHTML = "TRY AGAIN. THAT COLOR WAS " + Options[num];
 	}
 }
 
