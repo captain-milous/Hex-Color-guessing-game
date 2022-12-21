@@ -1,38 +1,57 @@
 let numOptions = 0;
+let Options = [];
+let wantedHexColor = "#000000";
 
 function rndHexColor() {
 	let hexColor = "#";
 	for(let i = 0; i < 3; i++) {
 		let random = Math.floor(Math.random() * 256);
 		let hexStr = random.toString(16);
+		if(random < 10 && random != 0) {
+			hexStr = "0"+hexStr;
+		} else if(random == 0) {
+			hexStr = "00";
+		} else {
+			hexStr = random.toString(16);
+		}		
 		hexColor = hexColor + hexStr;
 	}
 	return hexColor.toUpperCase();
 }
 
 function startGame() {
-	const Options = [];
+	Options = [];
 	for (var i = 0; i < numOptions ; i++) {
 		Options.push(rndHexColor());
 	}
 	console.log(Options);
-	let wantedHexColor = Options[Math.floor(Math.random() * (numOptions - 1))];
+	wantedHexColor = Options[Math.floor(Math.random() * (numOptions - 1))];
 	document.getElementById("wantedHexColor").innerHTML = wantedHexColor;
 	let output = "";
 	for (var i = 0; i < numOptions ; i++) {
-		output = output + '<button class="btn-hexColor" id="'+"item-"+i+'" onclick="guess()"></button>';
+		output = output + '<button class="btn-hexColor" id="'+"item-"+i+'" onclick="guess('+i+')"></button>';
 	}
 	document.getElementById("container-hexColor").innerHTML = output;
-	console.log(numOptions);
+	for (var i = 0; i < numOptions ; i++) {
+		document.getElementById('item-'+i).style.backgroundColor = Options[i];
+	}
 }
 
 function reset() {
-
+	document.getElementById("container-hexColor").style.display = "block";
 	startGame();
 }
 
-function guess() {
-	
+function guess(num) {
+	console.log(num)
+	let guessHexColor = Options[num];
+	if(wantedHexColor == guessHexColor){
+		console.log("Výhra!");
+		document.getElementById("container-hexColor").style.display = "none";
+		document.getElementById("restart").style.display = "inline-block";
+	} else {
+		document.getElementById('item-'+num).style.display = "none";
+	}
 }
 
 function difficulty(num) {
