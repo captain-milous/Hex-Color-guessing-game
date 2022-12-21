@@ -11,31 +11,33 @@
 
 button {
 	border-radius: 12px;
+	border: none;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	font-size: 16px;
+	display: inline-block;
 }
 
-button:hover {
+.btn-diff {
+	background-color: #e7e7e7;	
+	color: black;	
+}
+
+.btn-diff:hover {
 	background-color: #4CAF50;
 	color: white;
 }
 
-.btn-diff {
-	background-color: #e7e7e7;
-	border: none;
-	color: black;
-	padding: 15px 32px;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	font-size: 16px;
-}
-
 .btn-rst {
 	background-color: #555555;
-	border: none;
 	color: white;
-	padding: 15px 32px;
-	text-align: center;
-	text-decoration: none;
 	display: none; /* inline-block */
-	font-size: 16px;
+	
+}
+
+.btn-hexColor {
+	background-color: gray;
+	color: black;
+	border-radius: 50%;
 }

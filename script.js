@@ -1,5 +1,4 @@
 let numOptions = 0;
-const Options = [];
 
 function rndHexColor() {
 	let hexColor = "#";
@@ -12,17 +11,28 @@ function rndHexColor() {
 }
 
 function startGame() {
-	for (var i = 0; i < numOptions - 1; i++) {
+	const Options = [];
+	for (var i = 0; i < numOptions ; i++) {
 		Options.push(rndHexColor());
 	}
 	console.log(Options);
 	let wantedHexColor = Options[Math.floor(Math.random() * (numOptions - 1))];
 	document.getElementById("wantedHexColor").innerHTML = wantedHexColor;
+	let output = "";
+	for (var i = 0; i < numOptions ; i++) {
+		output = output + '<button class="btn-hexColor" id="'+"item-"+i+'" onclick="guess()"></button>';
+	}
+	document.getElementById("container-hexColor").innerHTML = output;
+	console.log(numOptions);
 }
 
 function reset() {
 
 	startGame();
+}
+
+function guess() {
+	
 }
 
 function difficulty(num) {
